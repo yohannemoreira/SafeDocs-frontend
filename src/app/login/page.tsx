@@ -41,12 +41,6 @@ export default function LoginPage() {
     }
   }
 
-  // Demo login helper
-  const handleDemoLogin = () => {
-    setEmail("joao@exemplo.com")
-    setPassword("password123")
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -112,7 +106,7 @@ export default function LoginPage() {
             </form>
 
             {/* Demo Login Button */}
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Button 
                 type="button" 
                 variant="outline" 
@@ -121,7 +115,7 @@ export default function LoginPage() {
               >
                 🎭 Login Demo (joao@exemplo.com)
               </Button>
-            </div>
+            </div> */}
 
             <div className="text-center text-sm text-slate-600 mt-4">
               <a href="/forgot-password" className="text-blue-600 hover:underline">

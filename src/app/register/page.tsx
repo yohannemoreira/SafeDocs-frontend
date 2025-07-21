@@ -10,10 +10,14 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Shield, Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
+import { useAuth } from "@/lib/auth-context"
+import { useRouter } from "next/navigation"
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,10 +26,45 @@ export default function RegisterPage() {
     acceptTerms: false,
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { register } = useAuth();
+  const router = useRouter();
+
+   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle registration logic here
-    console.log("Registration attempt:", formData)
+    setError("")
+    setIsLoading(true)
+
+    if (!formData.acceptTerms) {
+      setError("Você deve aceitar os termos de uso")
+      setIsLoading(false)
+      return
+    }
+
+    if (formData.password.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres")
+      setIsLoading(false)
+      return
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("As senhas não coincidem")
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      const result = await register(formData)
+      if (result.success) {
+        // O register já faz login automático no auth-context
+        router.push("/dashboard")
+      } else {
+        setError(result.error || "Erro ao criar conta")
+      }
+    } catch (err) {
+      setError("Erro inesperado. Tente novamente.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -136,10 +175,13 @@ export default function RegisterPage() {
                     política de privacidade
                   </Link>
                 </Label>
-              </div>
-
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={!formData.acceptTerms}>
-                Criar Conta
+              </div>  
+              <Button 
+                type="submit" 
+                className="w-full bg-blue-600 hover:bg-blue-700" 
+                disabled={!formData.acceptTerms || isLoading}
+              >
+                {isLoading ? "Criando conta..." : "Criar Conta"}
               </Button>
             </form>
 
