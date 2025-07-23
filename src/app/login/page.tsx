@@ -104,19 +104,6 @@ export default function LoginPage() {
                 {isLoading ? "Entrando..." : "Entrar"}
               </Button>
             </form>
-
-            {/* Demo Login Button */}
-            {/* <div className="mt-4">
-              <Button 
-                type="button" 
-                variant="outline" 
-                className="w-full" 
-                onClick={handleDemoLogin}
-              >
-                🎭 Login Demo (joao@exemplo.com)
-              </Button>
-            </div> */}
-
             <div className="text-center text-sm text-slate-600 mt-4">
               <a href="/forgot-password" className="text-blue-600 hover:underline">
                 Esqueceu sua senha?

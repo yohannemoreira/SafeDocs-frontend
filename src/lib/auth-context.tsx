@@ -103,8 +103,8 @@ const register = async (userData: {
     // Remove confirmPassword antes de enviar
     const { confirmPassword, acceptTerms, ...registerData } = userData
 
-    console.log('📤 Dados sendo enviados para o backend:', registerData)
-    console.log('🔗 URL:', `${API_BASE_URL}/auth/register`)
+    console.log('Dados sendo enviados para o backend:', registerData)
+    console.log('URL:', `${API_BASE_URL}/auth/register`)
 
     const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: 'POST',
@@ -114,10 +114,10 @@ const register = async (userData: {
       body: JSON.stringify(registerData),
     })
 
-    console.log('📡 Status da resposta:', response.status)
+    console.log('Status da resposta:', response.status)
     
     const data = await response.json()
-    console.log('📦 Resposta do backend:', data)
+    console.log('Resposta do backend:', data)
 
     if (response.ok) {
       // Fazer login automático após registro
@@ -130,7 +130,7 @@ const register = async (userData: {
       }
     }
   } catch (error) {
-    console.error('❌ Erro no registro:', error)
+    console.error('Erro no registro:', error)
     return { 
       success: false, 
       error: 'Erro de conexão. Verifique sua internet.' 
