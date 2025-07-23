@@ -30,7 +30,7 @@ import {
   Settings,
   LogOut,
   RefreshCw,
-  AlertCircle,
+  AlertCircle
 } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
@@ -353,12 +353,6 @@ export default function DashboardPage() {
               <Filter className="h-4 w-4 mr-2" />
               Filtros
             </Button>
-            <Link href="/upload">
-              <Button className="bg-blue-600 hover:bg-blue-700">
-                <Upload className="h-4 w-4 mr-2" />
-                Upload
-              </Button>
-            </Link>
           </div>
         </div>
 

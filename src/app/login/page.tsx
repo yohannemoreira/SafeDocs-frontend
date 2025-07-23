@@ -130,16 +130,6 @@ export default function LoginPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Demo Credentials Info */}
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <h3 className="text-sm font-semibold text-blue-800 mb-2">🎯 Credenciais de Teste</h3>
-          <div className="text-xs text-blue-700 space-y-1">
-            <div><strong>Email:</strong> joao@exemplo.com</div>
-            <div><strong>Senha:</strong> password123</div>
-            <div><strong>Outros usuários:</strong> maria@exemplo.com, pedro@exemplo.com</div>
-          </div>
-        </div>
       </div>
     </div>
   )
