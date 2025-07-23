@@ -23,11 +23,6 @@ export default function HomePage() {
                   Começar Agora
                 </Button>
               </Link>
-              <Link href="/demo">
-                <Button size="lg" variant="outline">
-                  Ver Demo
-                </Button>
-              </Link>
             </div>
           </div>
         </div>

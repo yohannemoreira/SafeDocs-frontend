@@ -245,6 +245,24 @@ export default function DashboardPage() {
     doc.originalName.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const getShareLink = async (documentId: number): Promise<string | null> => {
+  const token = localStorage.getItem('AuthToken');
+  if (!token) return null;
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/shared-links`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ documentId })
+  });
+
+  if (!response.ok) return null;
+  const linkData = await response.json();
+  return `${window.location.origin}/shared/${linkData.token}`;
+};
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -443,7 +461,16 @@ export default function DashboardPage() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
+                          <DropdownMenuItem
+                          onClick={async () => {
+                              const link = await getShareLink(doc.id);
+                              if (link) {
+                                window.open(link, "_blank"); // Abre o link para download
+                              } else {
+                                alert("Erro ao gerar link de download.");
+                              }
+                            }}
+                          >
                             <Download className="mr-2 h-4 w-4" />
                             Download
                           </DropdownMenuItem>

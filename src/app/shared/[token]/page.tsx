@@ -208,18 +208,6 @@ export default function SharedLinkPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              {/* Info do Documento */}
-              <div className="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-lg">
-                <div className="text-center">
-                  <p className="text-sm text-slate-600">Tipo</p>
-                  <p className="font-medium">{getFileTypeLabel(sharedDocument.document?.fileType)}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-sm text-slate-600">Tamanho</p>
-                  <p className="font-medium">{formatFileSize(sharedDocument.document?.fileSize)}</p>
-                </div>
-              </div>
-
               {/* Informações de Segurança */}
               <div className="space-y-3 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center gap-2 text-green-800">
